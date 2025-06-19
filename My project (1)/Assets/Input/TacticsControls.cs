@@ -102,7 +102,7 @@ public partial class @TacticsControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""7d2a7485-c052-4873-95cc-9aff66435577"",
                     ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=3)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Restart"",

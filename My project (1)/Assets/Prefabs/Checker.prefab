@@ -105,7 +105,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.8, y: 0.2, z: 0.8}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Center: {x: 0.15, y: 0.5, z: 0}
 --- !u!114 &7570227215556881514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,3 +120,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteMat: {fileID: 2100000, guid: b878f0ad0c0d6534d82662fc4bd8a134, type: 2}
   blackMat: {fileID: 2100000, guid: 6f20e85813e52014698fa1f7b79b378d, type: 2}
+  kingWhiteMat: {fileID: 2100000, guid: 67a19c61c5e76b5428d3eac810c8851b, type: 2}
+  kingBlackMat: {fileID: 2100000, guid: 6b22f93fca0f5394b97486a864d67ea6, type: 2}

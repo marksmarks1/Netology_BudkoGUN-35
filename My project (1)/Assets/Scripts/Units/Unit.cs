@@ -27,4 +27,13 @@ public abstract class Unit : MonoBehaviour
         Cell = dest;
         dest.Occupant = this;
     }
+
+    public virtual List<Cell> GetCaptureMoves()
+    {
+        var all = GetAvailableMoves();
+        var caps = new List<Cell>();
+        foreach (var c in all)
+            if (Mathf.Abs(c.X - Cell.X) > 1) caps.Add(c);
+        return caps;
+    }
 }

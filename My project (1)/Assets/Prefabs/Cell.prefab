@@ -123,3 +123,4 @@ MonoBehaviour:
   whiteMat: {fileID: 2100000, guid: 8b1551a790216dc42a20098b3827ca01, type: 2}
   blackMat: {fileID: 2100000, guid: 97b5bbdc630dd1a4192e8ca53976cb0d, type: 2}
   highlightMat: {fileID: 2100000, guid: 84eb362efc6d23a4e8c20dc3a726e023, type: 2}
+  mustAttackMat: {fileID: 2100000, guid: f098d74e41611414986ef67826e18d23, type: 2}

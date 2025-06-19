@@ -8,6 +8,17 @@ public class Battlefield : MonoBehaviour
     [SerializeField] CheckerUnit checkerPrefab;
 
     Cell[,] grid = new Cell[8, 8];
+
+    public IEnumerable<Cell> AllCells
+    {
+        get
+        {
+            for (int y = 0; y < 8; y++)
+                for (int x = 0; x < 8; x++)
+                    yield return grid[x, y];
+        }
+    }
+
     public Cell this[int x, int y] => grid[x, y];
     public bool Inside(int x, int y) => x >= 0 && x < 8 && y >= 0 && y < 8;
 
@@ -66,20 +77,35 @@ public class Battlefield : MonoBehaviour
     // === хранение выделенных клеток ===
     private readonly List<Cell> _lit = new();
 
-    public void HighlightMoves(Unit unit)
+    public void HighlightMoves(Unit u, bool mandatoryMode)
     {
         ClearHighlights();
-        foreach (var c in unit.GetAvailableMoves())
+        var legal = mandatoryMode ? u.GetCaptureMoves() : u.GetAvailableMoves();
+        //Debug.Log($"highlight {u.name}   mandatory={mandatoryMode}   cells={legal.Count}");
+
+        foreach (var cell in legal)
         {
-            c.SetHighlight(true);
-            _lit.Add(c);
+            bool must = mandatoryMode;
+            cell.SetHighlight(true, must);
+            _lit.Add(cell);
         }
     }
-
     public void ClearHighlights()
     {
         foreach (var c in _lit)
             c.SetHighlight(false);
         _lit.Clear();
+    }
+
+    public void HighlightMandatoryMoves(List<(Unit unit, Cell dest)> hits)
+    {
+        ClearHighlights();                       
+        foreach (var (u, cell) in hits)
+        {
+            u.Cell.SetHighlight(true, true);     
+            cell.SetHighlight(true, true);  
+            _lit.Add(u.Cell);
+            _lit.Add(cell);
+        }
     }
 }

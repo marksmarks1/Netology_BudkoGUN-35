@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class BattleController : MonoBehaviour
 {
     [SerializeField] PlayerController player;
+    [SerializeField] RestartUI restartUI;
+    const float HOLD_TIME = 3f;
+
     TacticsControls controls;
 
     void Awake()
@@ -15,6 +18,14 @@ public class BattleController : MonoBehaviour
         controls.Gameplay.Cancel.performed += _ => player.Cancel();
         controls.Gameplay.Confirm.performed += _ => player.Confirm();
 
+        controls.Gameplay.Restart.started += _ =>
+        {
+            if (restartUI) restartUI.Begin(HOLD_TIME);
+        };
+        controls.Gameplay.Restart.canceled += _ =>
+        {
+            if (restartUI) restartUI.Cancel();
+        };
         controls.Gameplay.Restart.performed += _ =>
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -28,8 +39,25 @@ public class BattleController : MonoBehaviour
         if (!Physics.Raycast(Camera.main.ScreenPointToRay(pos), out var hit)) return;
 
         if (hit.collider.TryGetComponent(out Cell cell))
-            player.HandleCellClick(cell);
-        else if (hit.collider.TryGetComponent(out Unit unit))
-            player.HandleUnitClick(unit);
+        {
+            if (cell.Occupant)  
+                player.HandleUnitClick(cell.Occupant);
+            else                
+                player.HandleCellClick(cell);
+            return;
+        }
+
+        if (hit.collider.TryGetComponent(out Unit unit))
+        {
+            if (player.HasSelection && unit == player.SelectedUnit)
+            {
+                var dest = player.SingleMandatoryCell;
+                player.HandleCellClick(dest ?? unit.Cell);
+            }
+            else
+            {
+                player.HandleUnitClick(unit);
+            }
+        }
     }
 }

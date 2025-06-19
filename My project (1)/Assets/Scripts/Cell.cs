@@ -10,7 +10,7 @@ public class Cell : MonoBehaviour,
     public Unit Occupant;
 
     [SerializeField] MeshRenderer mr;
-    [SerializeField] Material whiteMat, blackMat, highlightMat;
+    [SerializeField] Material whiteMat, blackMat, highlightMat, mustAttackMat;
     Material baseMat;
 
     public void Init(int x, int y, bool isBlack)
@@ -19,7 +19,12 @@ public class Cell : MonoBehaviour,
         baseMat = isBlack ? blackMat : whiteMat;
         mr.material = baseMat;
     }
-    public void SetHighlight(bool on) => mr.material = on ? highlightMat : baseMat;
+    public void SetHighlight(bool on, bool mandatory = false)
+    {
+        if (!on) { mr.material = baseMat; return; }
+
+        mr.material = mandatory ? mustAttackMat : highlightMat;
+    }
 
     public void OnPointerEnter(PointerEventData e) { }
     public void OnPointerExit(PointerEventData e) { }
