@@ -1,4 +1,4 @@
-using TMPro;
+п»їusing TMPro;
 using UnityEngine;
 
 public class TurnUI : MonoBehaviour
@@ -10,7 +10,7 @@ public class TurnUI : MonoBehaviour
 
     public void SetTurn(Team team)
     {
-        label.text = team == Team.White ? "Белые ходят" : "Чёрные ходят";
+        label.text = team == Team.White ? "Р‘РµР»С‹Рµ С…РѕРґСЏС‚" : "Р§С‘СЂРЅС‹Рµ С…РѕРґСЏС‚";
         label.color = team == Team.White ? whiteTurnColor : blackTurnColor;
         HideHint();
     }
@@ -18,5 +18,5 @@ public class TurnUI : MonoBehaviour
     public void ShowHint(string msg) { if (hint) { hint.text = msg; hint.gameObject.SetActive(true); } }
     public void HideHint() { if (hint) hint.gameObject.SetActive(false); }
 
-    public void ShowMandatory() => ShowHint("Сыграйте обязательный ход!");
+    public void ShowMandatory() => ShowHint("РЎС‹РіСЂР°Р№С‚Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ С…РѕРґ!");
 }

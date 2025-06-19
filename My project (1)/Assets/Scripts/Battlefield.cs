@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections.Generic;
 
 public class Battlefield : MonoBehaviour
@@ -28,7 +28,7 @@ public class Battlefield : MonoBehaviour
         SpawnPieces();
     }
 
-    /* ---------- генерация сетки ---------- */
+    /* ---------- РіРµРЅРµСЂР°С†РёСЏ СЃРµС‚РєРё ---------- */
 
     void BuildGrid()
     {
@@ -48,7 +48,7 @@ public class Battlefield : MonoBehaviour
             }
     }
 
-    /* ---------- расстановка шашек ---------- */
+    /* ---------- СЂР°СЃСЃС‚Р°РЅРѕРІРєР° С€Р°С€РµРє ---------- */
 
     void SpawnPieces()
     {
@@ -74,7 +74,7 @@ public class Battlefield : MonoBehaviour
         }
     }
 
-    // === хранение выделенных клеток ===
+    // === С…СЂР°РЅРµРЅРёРµ РІС‹РґРµР»РµРЅРЅС‹С… РєР»РµС‚РѕРє ===
     private readonly List<Cell> _lit = new();
 
     public void HighlightMoves(Unit u, bool mandatoryMode)

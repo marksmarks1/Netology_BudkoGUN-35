@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -83,8 +83,8 @@ public class CheckerUnit : Unit
 
         void TryJump(int dx, int dy)
         {
-            int mx = Cell.X + dx, my = Cell.Y + dy;     // клетка с соперником
-            int tx = Cell.X + dx * 2, ty = Cell.Y + dy * 2; // клетка приземления
+            int mx = Cell.X + dx, my = Cell.Y + dy;     // РєР»РµС‚РєР° СЃ СЃРѕРїРµСЂРЅРёРєРѕРј
+            int tx = Cell.X + dx * 2, ty = Cell.Y + dy * 2; // РєР»РµС‚РєР° РїСЂРёР·РµРјР»РµРЅРёСЏ
             if (!bf.Inside(tx, ty)) return;
 
             var mid = bf[mx, my];
